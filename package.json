@@ -19,7 +19,7 @@
     "gsap": "^3.12.7",
     "lenis": "^1.3.26",
     "lucide-react": "^1.16.0",
-    "next": "15.2.1",
+    "next": "15.2.8",
     "postprocessing": "^6.39.4",
     "react": "19.0.0",
     "react-dom": "19.0.0",
