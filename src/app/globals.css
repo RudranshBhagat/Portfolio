@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* ==========================================
+   FONTS
+========================================== */
+
+@font-face {
+  font-family: "biggerDisplay";
+  src: url("/fonts/BiggerDisplay.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/fonts/BarlowCondensed-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/fonts/BarlowCondensed-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/fonts/BarlowCondensed-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/fonts/BarlowCondensed-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/fonts/BarlowCondensed-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================
+   TAILWIND THEME
+========================================== */
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-orange: var(--accent-yellow);
+  --color-light-foreground: var(--light-foreground);
+  --color-light-background: var(--light-background);
+
+  --font-bigger-display: "biggerDisplay", sans-serif;
+  --font-barlow-condensed: "Barlow Condensed", sans-serif;
+}
+
+/* ==========================================
+   DESIGN SYSTEM
+========================================== */
+
+:root {
+  /* Main */
+  --background: #0b0b0b;
+  --foreground: #f1ebdd;
+
+  /* Main accent */
+  --accent-yellow: #c8a951;
+
+  /* Secondary accents
+     Keep these for technology icons */
+  --accent-purple: #9146e8;
+  --accent-green: #24a66a;
+  --accent-red: #ef493d;
+
+  /* UI */
+  --grid: rgba(200, 169, 81, 0.18);
+  --muted: rgba(241, 235, 221, 0.45);
+  --light-foreground: rgba(241, 235, 221, 0.55);
+  --light-background: #141414;
+
+  color-scheme: dark;
+}
+
+/* ==========================================
+   HTML / BODY
+========================================== */
+
+html {
+  background: var(--background);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background: var(--background);
+  color: var(--foreground);
+
+  font-family: "Barlow Condensed", sans-serif;
+
+  overflow-x: hidden;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================
+   TYPOGRAPHY
+========================================== */
+
+.font-bigger-display {
+  font-family: "biggerDisplay", sans-serif !important;
+}
+
+.font-barlow-condensed {
+  font-family: "Barlow Condensed", sans-serif !important;
+}
+
+/* ==========================================
+   TEXT ANIMATION SUPPORT
+========================================== */
+
+.word,
+.char,
+.char-span {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+  text-transform: inherit !important;
+}
+
+/* ==========================================
+   SELECTION
+========================================== */
+
+::selection {
+  background: var(--accent-yellow);
+  color: #0b0b0b;
+}
+
+/* ==========================================
+   IMAGES
+========================================== */
+
+img {
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 169, 81, 0.35);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 169, 81, 0.65);
+}
+
+/* ==========================================
+   HERO ANIMATIONS
+========================================== */
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(0, -8px, 0) rotate(2deg);
+  }
+}
+
+@keyframes scrollLine {
+  0% {
+    transform: translateY(-120%);
+  }
+
+  50% {
+    transform: translateY(180%);
+  }
+
+  100% {
+    transform: translateY(180%);
+  }
+}
+
