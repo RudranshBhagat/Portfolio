@@ -110,57 +110,73 @@ export default function TransitionRouter({ children }: { children: React.ReactNo
   }, [pathname, runEnterAnimation]);
 
   const navigate = (href: string) => {
-    if (href === pathname || isTransitioning) return;
+  if (href === pathname || isTransitioning) return;
 
-    setIsTransitioning(true);
-    isEnteringRef.current = false;
+  setIsTransitioning(true);
+  isEnteringRef.current = false;
 
-    const modal = modalRef.current;
-    const svg = svgRef.current;
-    const path = pathRef.current;
-    const slices = getSlices();
+  const modal = modalRef.current;
+  const svg = svgRef.current;
+  const path = pathRef.current;
+  const slices = getSlices();
 
-    if (modal && svg && path && slices.length > 0) {
-      const len = getPathLen();
-      gsap.killTweensOf([...slices, modal, svg, path]);
+  if (modal && svg && path && slices.length > 0) {
+    const len = getPathLen();
 
-      gsap.set(path, { strokeDasharray: `${len} ${len}`, strokeDashoffset: len });
-      gsap.set(svg, { opacity: 0 });
-      gsap.set(modal, { opacity: 0 });
-      // Shutters start open, each alternating the edge it will close from
-      slices.forEach((el, i) => {
-        gsap.set(el, { scaleX: 0, transformOrigin: i % 2 === 0 ? "left" : "right" });
+    gsap.killTweensOf([...slices, modal, svg, path]);
+
+    gsap.set(path, {
+      strokeDasharray: `${len} ${len}`,
+      strokeDashoffset: len,
+    });
+
+    gsap.set(svg, { opacity: 0 });
+    gsap.set(modal, { opacity: 0 });
+
+    slices.forEach((el, i) => {
+      gsap.set(el, {
+        scaleX: 0,
+        transformOrigin: i % 2 === 0 ? "left" : "right",
       });
+    });
 
-      const tl = gsap.timeline({
-        onStart: () => {
-          document.body.style.pointerEvents = "none";
-        },
-        onComplete: () => {
-          router.push(href);
-        },
-      });
+    const tl = gsap.timeline({
+      onStart: () => {
+        document.body.style.pointerEvents = "none";
 
-      // 1. Shutters close: single horizontal wave (left -> right sequence),
-      //    each slice sweeping in from the opposite edge of its neighbor
-      tl.to(slices, {
-        scaleX: 1.01,
-        duration: 0.3,
-        stagger: 0.018,
-        ease: "power3.inOut",
-      })
-        // 2. Fade in modal & draw "R" in
-        .to(modal, { opacity: 1, duration: 0.15 }, "-=0.2")
-        .to(svg, { opacity: 1, duration: 0.15 }, "<")
-        .to(
-          path,
-          { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" },
-          "-=0.1"
-        );
-    } else {
-      router.push(href);
-    }
-  };
+        // Start navigation immediately so the next page
+        // can load while the transition animation is running.
+        router.push(href);
+      },
+      onComplete: () => {
+        // Navigation has already started. The pathname effect
+        // will handle the enter animation.
+      },
+    });
+
+    // 1. Shutters close
+    tl.to(slices, {
+      scaleX: 1.01,
+      duration: 0.3,
+      stagger: 0.018,
+      ease: "power3.inOut",
+    })
+      // 2. Fade in modal & draw "R"
+      .to(modal, { opacity: 1, duration: 0.15 }, "-=0.2")
+      .to(svg, { opacity: 1, duration: 0.15 }, "<")
+      .to(
+        path,
+        {
+          strokeDashoffset: 0,
+          duration: 0.7,
+          ease: "power2.inOut",
+        },
+        "-=0.1"
+      );
+  } else {
+    router.push(href);
+  }
+};
 
   return (
     <TransitionContext.Provider value={{ navigate, isTransitioning }}>

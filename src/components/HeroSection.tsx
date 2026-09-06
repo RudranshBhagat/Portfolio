@@ -121,6 +121,11 @@ export default function HeroSection() {
          MOUSE PARALLAX
       ====================================== */
 
+      const isTouchDevice =
+        window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
+      if (isTouchDevice) return;
+
       const handleMouseMove = (event: MouseEvent) => {
         const rect = hero.getBoundingClientRect();
 
@@ -395,7 +400,7 @@ export default function HeroSection() {
             className="
               font-bigger-display
               whitespace-nowrap
-              text-[19vw]
+              text-[13vw]
               font-normal
               uppercase
               leading-[0.82]
@@ -416,7 +421,7 @@ export default function HeroSection() {
               mt-2
               font-bigger-display
               whitespace-nowrap
-              text-[19vw]
+              text-[13vw]
               font-normal
               uppercase
               leading-[0.82]
@@ -478,16 +483,16 @@ export default function HeroSection() {
             </span>
           </div>
 
-        {/* CTA BUTTONS + SOCIAL LINKS */}
-<div className="mt-8 flex flex-col items-center">
+          {/* CTA BUTTONS + SOCIAL LINKS */}
+          <div className="mt-8 flex flex-col items-center">
 
-  {/* Main CTA Buttons */}
-  <div className="flex items-center justify-center gap-3">
-    <a
-      href={heroContent.resumeUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="
+            {/* Main CTA Buttons */}
+            <div className="flex items-center justify-center gap-3">
+              <a
+                href={heroContent.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
         cursor-pointer
         inline-flex items-center
         text-[11px] uppercase tracking-[0.2rem]
@@ -500,14 +505,14 @@ export default function HeroSection() {
         hover:scale-105
         transition-all duration-300
       "
-    >
-      Resume
-    </a>
+              >
+                Resume
+              </a>
 
-    <div className="relative group/tooltip">
-      <a
-        href={heroContent.hireMeUrl}
-        className="
+              <div className="relative group/tooltip">
+                <a
+                  href={heroContent.hireMeUrl}
+                  className="
           cursor-pointer
           inline-flex items-center
           text-[11px] uppercase tracking-[0.2rem]
@@ -522,12 +527,12 @@ export default function HeroSection() {
           hover:scale-105
           transition-all duration-300
         "
-      >
-        Hire Me
-      </a>
+                >
+                  Hire Me
+                </a>
 
-      <div
-        className="
+                <div
+                  className="
           pointer-events-none
           absolute
           left-1/2
@@ -548,41 +553,41 @@ export default function HeroSection() {
           group-hover/tooltip:scale-100
           z-40
         "
-      >
-        {heroContent.hireMeTooltip}
-      </div>
-    </div>
-  </div>
+                >
+                  {heroContent.hireMeTooltip}
+                </div>
+              </div>
+            </div>
 
 
-  {/* Social Section */}
-  <div className="mt-5 flex flex-col items-center">
+            {/* Social Section */}
+            <div className="mt-5 flex flex-col items-center">
 
-    {/* Small visual label */}
-    <span
-      className="
+              {/* Small visual label */}
+              <span
+                className="
         mb-2
         text-[9px]
         uppercase
         tracking-[0.3rem]
         text-[#F1EBDD]/50
       "
-    >
-      {heroContent.connectLabel}
-    </span>
+              >
+                {heroContent.connectLabel}
+              </span>
 
-    <div className="flex items-center gap-3">
-      {heroSocialLinks.map((social) => {
-        const Icon = social.Icon;
+              <div className="flex items-center gap-3">
+                {heroSocialLinks.map((social) => {
+                  const Icon = social.Icon;
 
-        return (
-          <a
-            key={social.name}
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={social.ariaLabel}
-            className="
+                  return (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.ariaLabel}
+                      className="
               group
               flex items-center justify-center
               w-12 h-12
@@ -598,18 +603,18 @@ export default function HeroSection() {
               hover:scale-110
               transition-all duration-300
             "
-          >
-            <Icon
-              size={19}
-              className="transition-transform duration-300 group-hover:scale-110"
-            />
-          </a>
-        );
-      })}
-    </div>
-  </div>
+                    >
+                      <Icon
+                        size={19}
+                        className="transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
 
-</div>
+          </div>
 
 
 
