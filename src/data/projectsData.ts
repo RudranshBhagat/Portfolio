@@ -69,7 +69,7 @@ export const projectsData: ProjectItem[] = [
       { url: "/Images/Projects/project-3-event-ticket-platform/2.png", pageName: "Landing Page & Hero Positioning" },
       { url: "/Images/Projects/project-3-event-ticket-platform/3.png", pageName: "Event Details & Ticket Registration", },
     ],
-    url: "",
+    url: "https://jito-skillathon.vercel.app/",
    client: "Brandlift Digital Marketing Consultancy",
 year: "2026",
 role: "Full-Stack Developer",
