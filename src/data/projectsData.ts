@@ -116,7 +116,7 @@ tagline: [
       { url: "/Images/Projects/project-2-shreeji-projects/7.png", pageName: "Mobile App Ecosystem & Push Notifications" },
       
     ],
-    url: "shreeji-projects-mandla.vercel.app",
+    url: "https://shreeji-projects-mandla.vercel.app/",
     client: "Brandlift Digital Marketing Consultancy",
 year: "2026",
 role: "Frontend Developer",
